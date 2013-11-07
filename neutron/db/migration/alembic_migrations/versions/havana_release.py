@@ -34,7 +34,16 @@ migration_for_plugins = ['*']
 
 def upgrade(active_plugins=None, options=None):
     """A no-op migration for marking the Havana release."""
-    pass
+    op.create_table(u'quotas',
+    sa.Column(u'tenant_id', mysql.VARCHAR(length=255), nullable=True),
+    sa.Column(u'id', mysql.VARCHAR(length=36), nullable=False),
+    sa.Column(u'resource', mysql.VARCHAR(length=255), nullable=True),
+    sa.Column(u'limit', mysql.INTEGER(display_width=11), autoincrement=False, nullable=False),
+    sa.PrimaryKeyConstraint(u'id'),
+    mysql_default_charset=u'utf8',
+    mysql_engine=u'InnoDB'
+    )
+
 
 
 def downgrade(active_plugins=None, options=None):
