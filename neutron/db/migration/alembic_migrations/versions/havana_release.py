@@ -31,6 +31,9 @@ down_revision = '27ef74513d33'
 
 migration_for_plugins = ['*']
 
+from alembic import op
+import sqlalchemy as sa
+
 
 def upgrade(active_plugins=None, options=None):
     """A no-op migration for marking the Havana release."""
